@@ -18,7 +18,7 @@ class WardenFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+          
         ];
     }
 }

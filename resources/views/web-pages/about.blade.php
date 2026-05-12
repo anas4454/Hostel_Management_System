@@ -155,9 +155,9 @@
           by offering comfortable, secure, and affordable accommodations. We continue to grow
           every day with the trust and love of thousands of students.
         </p>
-        <button class="btn btn-success px-4">
+        <a href="{{ route('facilities') }}" class="btn btn-success px-4 decoration-none">
           Join Our Journey →
-        </button>
+        </a>
       </div>
 
       <!-- TIMELINE -->
@@ -212,9 +212,9 @@
         </div>
       </div>
 
-      <button class="btn btn-success px-4 mt-3 mt-lg-0">
+      <a href="{{ route('login') }}"  class="btn btn-success px-4 mt-3 mt-lg-0 decoration-none">
         Explore Hostels →
-      </button>
+      </a>
 
     </div>
 

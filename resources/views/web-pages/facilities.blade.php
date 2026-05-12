@@ -172,9 +172,9 @@
 
       <h4>Experience the Hostel Stay Difference</h4>
 
-      <button class="btn btn-success px-4">
+      <a href="{{ route('login') }}" class="btn btn-success px-4 decoration-none">
         Explore Hostels →
-      </button>
+      </a>
 
     </div>
 

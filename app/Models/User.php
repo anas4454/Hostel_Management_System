@@ -30,6 +30,18 @@ class User extends Authenticatable
         ];
     }
 
+
+
+    public function studentProfile()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function approvals()
+    {
+        return $this->hasMany(Approval::class, 'student_id');
+    }
+
     public function complaints()
     {
         return $this->hasMany(Complaint::class, 'student_id');
@@ -39,5 +51,31 @@ class User extends Authenticatable
     {
         return $this->hasMany(Leave::class, 'student_id');
     }
-    
+
+    public function fees()
+    {
+        return $this->hasMany(Fee::class, 'student_id');
+    }
+
+    public function visitors()
+    {
+        return $this->hasMany(Visitor::class, 'student_id');
+    }
+    public function wardenVisitors()
+    {
+        return $this->hasMany(Visitor::class, 'warden_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Student::class, 'parent_id');
+    }
+
+
+    protected $fillable = [
+    'name',
+    'email',
+    'password',
+    'role',
+];
 }

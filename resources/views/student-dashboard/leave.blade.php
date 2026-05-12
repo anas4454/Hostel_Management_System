@@ -2,6 +2,18 @@
 <x-student-component.main>
 	<div class="container-fluid p-4">
 		<div class="card-box mb-4">
+
+             @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            
 			<h5 class="mb-3">Leave Requests</h5>
 			<table class="table table-bordered table-hover">
 				<thead class="table-success">
@@ -20,8 +32,8 @@
                     @foreach ($leaves as $leave)
                     	<tr>
 						<td>{{ $loop->iteration }}</td>
-						<td>{{ $leave->from_date->format('d M Y') }}</td>
-						<td>{{ $leave->to_date->format('d M Y') }}</td>
+						<td>{{ $leave->from_date }}</td>
+						<td>{{ $leave->to_date }}</td>
 						<td>{{ $leave->reason }}</td>
 						<td><span class="badge bg-warning text-dark">{{ $leave->status }}</span></td>
 						<td><button class="btn btn-outline-success btn-sm">View</button></td>

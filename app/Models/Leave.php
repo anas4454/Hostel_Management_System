@@ -13,13 +13,21 @@ class Leave extends Model
 
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class, 'student_id');
     }
 
     public function warden()
     {
-        return $this->belongsTo(Warden::class);
+        return $this->belongsTo(User::class, 'warden_id');
     }
+
+    protected $fillable = [
+        'student_id',
+        'from_date',
+        'to_date',
+        'reason',
+        'status',
+    ];
 
     protected $casts = [
         'from_date' => 'date',

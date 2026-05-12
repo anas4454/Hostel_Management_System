@@ -17,32 +17,31 @@
                 <div class="col-6 col-lg-2">
                     <h6 class="footer-heading">Quick Links</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Hostels</a></li>
-                        <li><a href="#">Facilities</a></li>
-                        <li><a href="#">How it Works</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('about') }}">About Us</a></li>
+                        <li><a href="{{ route('facilities') }}">Facilities</a></li>
+                        <li><a href="{{ route('work') }}">How it Works</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="col-6 col-lg-2">
                     <h6 class="footer-heading">For Students</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Find Hostels</a></li>
-                        <li><a href="#">Book Now</a></li>
-                        <li><a href="#">Payment Options</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Support</a></li>
+                        <li><a href="{{ route('login') }}">Find Hostels</a></li>
+                        <li><a href="{{ route('student.room-booking') }}">Book Now</a></li>
+                        <li><a href="{{ route('student.room-booking') }}">Payment Options</a></li>
+                        <li><a href="{{ route('login') }}">FAQs</a></li>
+                        <li><a href="{{ route('about') }}">Support</a></li>
                     </ul>
                 </div>
 
                 <div class="col-6 col-lg-2">
                     <h6 class="footer-heading">Legal</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="{{ route('about') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('work') }}">Terms & Conditions</a></li>
+                        {{-- <li><a href="#">Refund Policy</a></li> --}}
                     </ul>
                 </div>
 
@@ -50,10 +49,10 @@
                     <h6 class="footer-heading">Follow Us</h6>
 
                     <div class="social-icons mb-3">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
                     </div>
 
 

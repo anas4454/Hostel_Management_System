@@ -17,6 +17,26 @@
 				</thead>
 				<tbody>
 					<!-- Example row -->
+                    @if ($fees->isNotEmpty())
+                        @foreach ($fees as $fee)
+                            <tr>
+                                <td>{{ $fee->student->name }}</td>
+                                <td>Rs:{{ $fee->amount }}</td>
+                                <td>{{ $fee->created_at->format('Y-m-d') }}</td>
+                                <td>
+                                    @if ($fee->status === 'Paid')
+                                        <span class="badge bg-success">Paid</span>
+                                    @else
+                                        <span class="badge bg-danger">Pending</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">View</button>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    @endif
 					<tr>
 						<td>Jane Smith</td>
 						<td>₹10,000</td>

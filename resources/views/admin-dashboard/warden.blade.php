@@ -12,19 +12,29 @@
 						<th>#</th>
 						<th>Name</th>
 						<th>Email</th>
-						<th>Password</th>
+						{{-- <th>Password</th> --}}
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<!-- Example row -->
-					<tr>
-						<td>1</td>
-						<td>Warden Ali</td>
-						<td>ali.warden@email.com</td>
-						<td>00234567</td>
-						<td><button class="btn btn-outline-danger btn-sm">Delete</button></td>
-					</tr>
+                    @if ($wardens->isNotEmpty())
+                        @foreach ($wardens as $warden)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $warden->name }}</td>
+                                <td>{{ $warden->email }}</td>
+                                {{-- <td>{{ $warden->password }}</td> --}}
+                                <td><button class="btn btn-outline-danger btn-sm">Delete</button></td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5" class="text-center">No wardens found.</td>
+                        </tr>
+
+                    @endif
+
 				</tbody>
 			</table>
 		</div>

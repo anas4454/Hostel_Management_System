@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+            $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->date('from_date');
             $table->date('to_date');
             $table->string('reason')->nullable();
-            $table->string('status')->default('Pending');
-            $table->foreignId('warden_id')->nullable()->constrained('wardens')->onDelete('set null');
+            $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
+            $table->foreignId('warden_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

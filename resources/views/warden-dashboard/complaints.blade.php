@@ -15,25 +15,41 @@
                 </thead>
                 <tbody>
                     <!-- Example row -->
-                    <tr>
 
-                        @if ($complaints->isNotEmpty())
+                    @if ($complaints->isNotEmpty())
 
-                            @foreach ($complaints as $complain)
+                        @foreach ($complaints as $complain)
+                            <tr>
+
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $complain->student->name }}</td>
+                                <td>{{ $complain->student->name ?? 'NA' }}</td>
                                 <td>{{ $complain->subject }}</td>
                                 <td><span class="badge bg-warning text-dark">Pending</span></td>
                                 <td>{{ $complain->created_at->format('d M Y') }}</td>
                                 <td>
-                                    <button class="btn btn-outline-success btn-sm">Approve</button>
-                                    <button class="btn btn-outline-danger btn-sm">Reject</button>
+                                    <form action="{{ route('warden.approve-complaint', $complain->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-success btn-sm">
+                                            Approve
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('warden.reject-complaint', $complain->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-danger btn-sm">
+                                            Reject
+                                        </button>
+                                    </form>
                                 </td>
-                            @endforeach
+                            </tr>
+                        @endforeach
 
-                        @endif
+                    @endif
 
-                    </tr>
+
                 </tbody>
             </table>
         </div>

@@ -17,7 +17,69 @@
 				</thead>
 				<tbody>
 					<!-- Example row -->
-					<tr>
+
+                    @if ($approvals->isNotEmpty())
+
+                        @foreach ($approvals as $approval)
+                            <tr>
+
+                                <td>
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td>
+                                    {{ $approval->student->name ?? 'N/A' }}
+                                </td>
+                                <td>
+                                    {{ $approval->room->room_number ?? 'N/A' }}
+                                </td>
+                                <td>
+                                    {{ $approval->room->type ?? 'N/A' }}
+                                </td>
+                                <td>
+                                    {{ $approval->room->seats ?? 'N/A' }}
+                                </td>
+                                <td>
+                                    Rs. {{ number_format($approval->room->price, 2) ?? 'N/A' }}
+                                </td>
+                                <td>
+                                    <span
+                                        class="badge
+                                        {{ $approval->status == 'Approved' ? 'bg-success' : ($approval->status == 'Rejected' ? 'bg-danger' : 'bg-warning text-dark') }}">
+                                        {{ $approval->status }}
+                                    </span>
+                                </td>
+                                <td>
+
+                                    @if ($approval->status == 'Pending')
+                                        <form method="POST"
+                                            action="{{ route('warden.approve-room', $approval) }}"
+                                            class="d-inline">
+                                            @csrf
+                                            @method('Post')
+                                            <input type="hidden" name="status" value="Approved">
+                                            <button type="submit"
+                                                class="btn btn-outline-success btn-sm">Approve</button>
+                                        </form>
+                                        <form method="POST"
+                                            action="{{ route('warden.reject-room', $approval) }}"
+                                            class="d-inline">
+                                            @csrf
+                                            @method('Post')
+                                            <input type="hidden" name="status" value="Rejected">
+                                            <button type="submit"
+                                                class="btn btn-outline-danger btn-sm">Reject</button>
+                                        </form>
+                                    @else
+                                        No actions available
+                                    @endif
+
+                                </td>
+
+                            </tr>
+                        @endforeach
+
+                    @endif
+					{{-- <tr>
 						<td>1</td>
 						<td>Ahmed Khan</td>
 						<td>102</td>
@@ -29,7 +91,7 @@
 							<button class="btn btn-outline-success btn-sm">Approve</button>
 							<button class="btn btn-outline-danger btn-sm">Reject</button>
 						</td>
-					</tr>
+					</tr> --}}
 				</tbody>
 			</table>
 		</div>

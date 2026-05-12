@@ -46,20 +46,34 @@
                 <div class="text-danger small mb-2">{{ $message }}</div>
             @enderror
 
-             <!-- Role -->
-                <label for="user_role" class="emails">Register As</label>
-                <div class="mb-3 input-group-custom">
-                    <select id="user_role" name="role" class="input-field" required>
-                        <option value="">Select role</option>
-                        <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Student</option>
-                        <option value="parent" {{ old('role') == 'parent' ? 'selected' : '' }}>Parent</option>
-                         </select>
+            <!-- Role -->
+            <label for="user_role" class="emails">Register As</label>
+            <div class="mb-3 input-group-custom">
+                <select id="user_role" name="role" class="input-field" required>
+                    <option value="">Select role</option>
+                    <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Student</option>
+                    <option value="parent" {{ old('role') == 'parent' ? 'selected' : '' }}>Parent</option>
+                </select>
+            </div>
+            @error('role')
+                <div class="text-danger small mb-2">{{ $message }}</div>
+            @enderror
+
+
+            <label for="roll_number" class="emails">
+                Student Roll Number
+            </label>
+            <div class="mb-3 input-group-custom">
+                <input id="roll_number" type="text" name="roll_number" value="{{ old('roll_number') }}"
+                    class="input-field" placeholder="Enter Roll Number">
+            </div>
+            @error('roll_number')
+                <div class="text-danger small mb-2">
+
+                    {{ $message }}
+
                 </div>
-                @error('role')
-                    <div class="text-danger small mb-2">{{ $message }}</div>
-                @enderror
-
-
+            @enderror
 
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <a href="{{ route('login') }}" class="text-success small">Already registered?</a>

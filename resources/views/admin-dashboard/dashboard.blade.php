@@ -6,28 +6,28 @@
                     <div class="col-md-3">
                         <div class="card-box">
                             <h6>Total Students</h6>
-                            <h3>248</h3>
+                            <h3>{{ $studentCount }}</h3>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="card-box">
                             <h6>Total Rooms</h6>
-                            <h3>120</h3>
+                            <h3>{{ $roomCount }}</h3>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="card-box">
                             <h6>Collection</h6>
-                            <h3>₹3,45,000</h3>
+                            <h3>RS:{{ $totalCollection }}</h3>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="card-box">
                             <h6>Complaints</h6>
-                            <h3>5</h3>
+                            <h3>{{$complaintCount}}</h3>
                         </div>
                     </div>
 

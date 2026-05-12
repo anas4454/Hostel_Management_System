@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+            $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->string('subject');
             $table->text('description')->nullable();
-            $table->string('status')->default('Pending');
-            $table->foreignId('warden_id')->nullable()->constrained('wardens')->onDelete('set null');
+            $table->enum('status',[ 'Pending','Resolved','Rejected'])->default('Pending');
+            $table->foreignId('warden_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

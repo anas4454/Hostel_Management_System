@@ -66,36 +66,37 @@
                     <div class="form-box">
 
                         <h4>Send Us a Message</h4>
-
-                        <div class="row g-3 mt-2">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Your Name">
+                        <form action="" method="POST">
+                            @csrf
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" name="name">
+                                </div>
+                                <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Email Address" name="email">
                             </div>
                             <div class="col-md-6">
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                <input type="text" class="form-control" placeholder="Phone Number" name="phone">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Phone Number">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Subject">
+                                <input type="text" class="form-control" placeholder="Subject" name="subject">
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+                                <textarea class="form-control" rows="4" placeholder="Message" name="message"></textarea>
                             </div>
-                        </div>
+                         </div>
 
-                        <div class="form-check mt-3">
-                            <input class="form-check-input" type="checkbox">
+                            <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="terms" name="terms" required  >
                             <label class="form-check-label">
                                 I agree to the Terms & Conditions
                             </label>
                         </div>
 
-                        <button class="btn btn-success mt-3 px-4">
+                        <button type="submit" class="btn btn-success mt-3 px-4">
                             Send Message →
                         </button>
-
+                        </form>
                     </div>
                 </div>
 

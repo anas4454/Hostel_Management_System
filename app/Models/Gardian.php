@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Parents extends Model
+class Gardian extends Model
 {
-    /** @use HasFactory<\Database\Factories\ParentsFactory> */
     use HasFactory;
-
     public function students()
     {
-        return $this->hasMany(Student::class, 'parent_id');
+        return $this->hasMany(Student::class, 'gardian_id');
     }
 }

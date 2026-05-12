@@ -2,28 +2,34 @@
 
 namespace Database\Factories;
 
-use App\Models\Complaint;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Complaint>
- */
 class ComplaintFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'student_id' =>$this->faker->numberBetween(1, 10), // You can set this to a valid student ID if needed
-            'subject' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(),
-             'status' => 'Pending',
-             'warden_id' => null,
+
+            'student_id' => User::whereIn(
+                'role',
+                ['student']
+            )->pluck('id')->random() ?? null,
+
+            'subject' => fake()->sentence(),
+
+            'description' => fake()->paragraph(),
+
+            'warden_id' => User::where(
+                'role',
+                'warden'
+            )->inRandomOrder()->value('id'),
+
+            'status' => fake()->randomElement([
+                'Pending',
+                'Resolved',
+                'Rejected',
+            ]),
         ];
     }
 }
-

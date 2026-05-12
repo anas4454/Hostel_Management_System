@@ -4,12 +4,11 @@
             <img src="{{  asset('images/logo.png') }}" alt="" width="100" class="m-2 mb-4">
 
             <ul class="menu">
-                <li class="active">Dashboard</li>
-               <a href="{{ route('admin.wardens') }}"><li>Wardens</li></a>
-              <a href="{{ route('admin.room') }}"><li>Room Management</li></a>
-               <a href="{{ route('admin.fee-payment') }}"><li>Payments</li></a>
-                <a href="{{ route('admin.complaints') }}"><li>Complaints</li></a>
-                <a href="{{ route('admin.setting') }}"><li>Settings</li></a>
+                <a href="{{ route('admin.dashboard') }}"><li class=" @if(request()->routeIs('admin.dashboard')) active @endif">Dashboard</li></a>
+               <a href="{{ route('admin.wardens') }}"><li class=" @if(request()->routeIs('admin.wardens')) active @endif">Wardens</li></a>
+              <a href="{{ route('admin.room') }}"><li class=" @if(request()->routeIs('admin.room')) active @endif">Room Management</li></a>
+               <a href="{{ route('admin.fee-payment') }}"><li class=" @if(request()->routeIs('admin.fee-payment')) active @endif">Payments</li></a>
+                <a href="{{ route('admin.complaints') }}"><li class=" @if(request()->routeIs('admin.complaints')) active @endif">Complaints</li></a>
 
             </ul>
             <form method="POST" action="{{ route('logout') }}" class="mt-4">

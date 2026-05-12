@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Rooms;
+use App\Models\Room;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RoomsSeeder extends Seeder
+class RoomSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Rooms::factory(30)->create();
+         Room::factory(30)->create();
     }
 }

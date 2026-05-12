@@ -11,21 +11,29 @@
 						<th>Complaint</th>
 						<th>Date</th>
 						<th>Status</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<!-- Example row -->
-					<tr>
-						<td>Jane Smith</td>
-						<td>Leaking tap in bathroom</td>
-						<td>2026-05-01</td>
-						<td><span class="badge bg-warning">Pending</span></td>
-						<td>
-							<button class="btn btn-sm btn-primary">View</button>
-							<button class="btn btn-sm btn-success">Resolve</button>
-						</td>
-					</tr>
+                    @if ($complaints->isNotEmpty())
+                        @foreach ($complaints as $complaint)
+                            <tr>
+                                <td>{{ $complaint->student->name }}</td>
+                                <td>{{ $complaint->description }}</td>
+                                <td>{{ $complaint->created_at->format('Y-m-d') }}</td>
+                                <td>
+                                    @if ($complaint->status === 'Resolved')
+                                        <span class="badge bg-success">Resolved</span>
+                                    @else
+                                        <span class="badge bg-warning">Pending</span>
+                                    @endif
+                                </td>
+
+                            </tr>
+                        @endforeach
+
+                    @endif
+
 					<!-- Loop complaints here -->
 				</tbody>
 			</table>

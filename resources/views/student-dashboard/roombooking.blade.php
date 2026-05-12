@@ -1,6 +1,20 @@
 <x-student-component.main>
     <div class="container-fluid p-4">
         <div class="card-box mb-4">
+
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            
             <h5 class="mb-3">Room Booking</h5>
             <p class="text-muted">Select a room of your choice. Your booking will be sent to the warden for approval.</p>
             <table class="table table-bordered table-hover">
@@ -30,8 +44,46 @@
                                 <td>Rs. {{ $room->price }}</td>
                                 <td>{{ $room->features }}</td>
                                 <td>{{ $room->facilities }}</td>
-                                <td><span class="badge bg-success">{{$room->status}}</span></td>
-                                <td><button class="btn btn-outline-success btn-sm">Book</button></td>
+
+                                @php
+                                    $approvedCount = $room->approvals->where('status', 'Approved')->count();
+                                    $isFull = $approvedCount >= $room->seats;
+                                    $studentRequest = $room->approvals->where('student_id', auth()->id())->first();
+
+                                @endphp
+                                <td>
+
+                                    @if ($isFull)
+                                        <span class="badge bg-danger">
+                                            Full
+                                        </span>
+                                    @elseif($studentRequest && $studentRequest->status == 'Pending')
+                                        <span class="badge bg-warning text-dark">
+                                            Pending Approval
+                                        </span>
+                                    @elseif($studentRequest && $studentRequest->status == 'Approved')
+                                        <span class="badge bg-success">
+                                            Approved
+                                        </span>
+                                    @elseif($studentRequest && $studentRequest->status == 'Rejected')
+                                        <span class="badge bg-danger">
+                                            Rejected
+                                        </span>
+                                    @else
+                                        <span class="badge bg-success">
+                                            Available
+                                        </span>
+                                    @endif
+
+                                </td>
+                                <td>
+                                    <form action="{{ route('student.book-room', $room->id) }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-outline-success btn-sm">
+                                            Book
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
 

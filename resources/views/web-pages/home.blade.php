@@ -136,9 +136,9 @@
                                 <li>Great locations near universities</li>
                             </ul>
 
-                            <button class="btn btn-success mt-3">
+                            <a href="{{ route('about') }}" class="btn btn-success mt-3 decoration-none">
                                 Know More About Us →
-                            </button>
+                            </a>
 
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                             <p class="section-tag">LATEST FROM BLOG</p>
                             <h3 class="section-title">Tips, News & Guides</h3>
                         </div>
-                      
+
                     </div>
 
                     <div class="row g-4">
@@ -242,7 +242,7 @@
                                     <span class="date">12 May</span>
                                     <h6>How to Choose the Right Hostel</h6>
                                     <p>A complete guide to help you choose the best hostel for your stay.</p>
-                                    <a href="#">Read More →</a>
+                                    <a href="{{ route("work") }}">Read More →</a>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +254,7 @@
                                     <span class="date">08 May</span>
                                     <h6>Top 10 Student-Friendly Cities in Pakistan</h6>
                                     <p>Discover the best cities for students to live and study.</p>
-                                    <a href="#">Read More →</a>
+                                    <a href="{{ route("work") }}">Read More →</a>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +266,7 @@
                                     <span class="date">03 May</span>
                                     <h6>Hostel Life: Making the Most of It</h6>
                                     <p>Tips and tricks to enjoy your hostel life and make lifelong memories.</p>
-                                    <a href="#">Read More →</a>
+                                    <a href="{{ route("work") }}">Read More →</a>
                                 </div>
                             </div>
                         </div>

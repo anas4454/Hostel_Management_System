@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rooms;
-use App\Http\Requests\StoreRoomsRequest;
-use App\Http\Requests\UpdateRoomsRequest;
+use App\Models\Room;
+use App\Http\Requests\StoreRoomRequest;
+use App\Http\Requests\UpdateRoomRequest;
 
-class RoomsController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class RoomsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRoomsRequest $request)
+    public function store(StoreRoomRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class RoomsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rooms $rooms)
+    public function show(Room $room)
     {
         //
     }
@@ -43,7 +43,7 @@ class RoomsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rooms $rooms)
+    public function edit(Room $room)
     {
         //
     }
@@ -51,7 +51,7 @@ class RoomsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRoomsRequest $request, Rooms $rooms)
+    public function update(UpdateRoomRequest $request, Room $room)
     {
         //
     }
@@ -59,7 +59,7 @@ class RoomsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rooms $rooms)
+    public function destroy(Room $room)
     {
         //
     }

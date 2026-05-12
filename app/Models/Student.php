@@ -2,41 +2,34 @@
 
 namespace App\Models;
 
+use Database\Factories\StudentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    /** @use HasFactory<\Database\Factories\StudentFactory> */
+    /** @use HasFactory<StudentFactory> */
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function room()
     {
-        return $this->belongsTo(Rooms::class, 'room_id');
+        return $this->belongsTo(Room::class);
     }
 
     public function parent()
     {
-        return $this->belongsTo(Parents::class, 'parent_id');
+        return $this->belongsTo(User::class, 'parent_id');
     }
 
-    public function fees()
-    {
-        return $this->hasMany(Fee::class);
-    }
-
-    public function leaves()
-    {
-        return $this->hasMany(Leave::class);
-    }
-
-    public function complaints()
-    {
-        return $this->hasMany(Complaint::class);
-    }
-
-    public function visitors()
-    {
-        return $this->hasMany(Visitor::class);
-    }
+    protected $fillable = [
+    'user_id',
+    'parent_id',
+    'phone',
+    'roll_number',
+];
 }

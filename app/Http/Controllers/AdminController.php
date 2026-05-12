@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complaint;
+use App\Models\Fee;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,27 +12,44 @@ class AdminController extends Controller
 {
     public function adminDashboard()
     {
-        return view('admin-dashboard.dashboard');
+        $studentCount = User::where('role', 'student')->count();
+        $roomCount = Room::count();
+        $complaintCount = Complaint::count();
+        $totalCollection = Fee::where('status', 'Paid')->sum('amount');
+
+        return view('admin-dashboard.dashboard', compact('studentCount', 'roomCount', 'complaintCount', 'totalCollection'));
     }
 
     public function adminComplaints()
     {
-        return view('admin-dashboard.complaints');
+        $complaints = Complaint::with('student')->get();
+        return view('admin-dashboard.complaints', compact('complaints'));
     }
 
     public function adminFeePayment()
     {
-        return view('admin-dashboard.fee-payment');
+        $fees = Fee::with('student')->get();
+        return view('admin-dashboard.fee-payment', compact('fees'));
     }
 
     public function adminRoomView()
     {
-        return view('admin-dashboard.room');
+        $rooms = Room::with([
+            'fees',
+            'approvals',
+        ])->get();
+
+        return view(
+            'admin-dashboard.room',
+            compact('rooms')
+        );
     }
 
     public function wardens()
     {
-        return view('admin-dashboard.warden');
+        $wardens = User::where('role', 'warden')->get();
+
+        return view('admin-dashboard.warden', compact('wardens'));
     }
 
     public function addWardens()
@@ -56,10 +76,5 @@ class AdminController extends Controller
         return view('admin-dashboard.warden')->with('success', 'Warden added successfully!');
     }
 
-   
-
-    public function adminSetting()
-    {
-        return view('admin-dashboard.setting');
-    }
+  
 }

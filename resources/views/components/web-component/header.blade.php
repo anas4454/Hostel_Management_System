@@ -17,16 +17,16 @@
           <!-- Menu and Buttons -->
           <div class="collapse navbar-collapse justify-content-end" id="nav">
               <ul class="navbar-nav me-3 mt-1">
-             <li class="nav-item"><a class="nav-link active " href="{{ route('home') }}"
+             <li class="nav-item"><a class="nav-link ps-4 @if(Route::is('home')) active @endif" href="{{ route('home') }}"
                           style="font-weight: 500; color: var(--green);">Home</a></li>
-                  <li class="nav-item"><a class="nav-link ps-4" href="{{ route('about') }}" style="font-weight: 500;">About Us</a>
+                  <li class="nav-item"><a class="nav-link ps-4 @if(Route::is('about')) active @endif" href="{{ route('about') }}" style="font-weight: 500;">About Us</a>
                   </li>
-                  <li class="nav-item"><a class="nav-link ps-4" href="{{ route('facilities') }}" style="font-weight: 500;">Facilities</a>
+                  <li class="nav-item"><a class="nav-link ps-4 @if(Route::is('facilities')) active @endif" href="{{ route('facilities') }}" style="font-weight: 500;">Facilities</a>
                   </li>
-                  <li class="nav-item"><a class="nav-link ps-4" href="{{ route('work') }}" style="font-weight: 500;">How It
+                  <li class="nav-item"><a class="nav-link ps-4 @if(Route::is('work')) active @endif" href="{{ route('work') }}" style="font-weight: 500;">How It
                           Works</a>
                   </li>
-                  <li class="nav-item"><a class="nav-link ps-4" href="{{ route('contact') }}" style="font-weight: 500;">Contact</a>
+                  <li class="nav-item"><a class="nav-link ps-4 @if(Route::is('contact')) active @endif" href="{{ route('contact') }}" style="font-weight: 500;">Contact</a>
                   </li>
               </ul>
 

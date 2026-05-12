@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Parents;
+use App\Models\Gardian;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Parents>
+ * @extends Factory<Gardian>
  */
-class ParentsFactory extends Factory
+class GardianFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,7 @@ class ParentsFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'phone' => $this->faker->phoneNumber(),
+           
         ];
     }
 }

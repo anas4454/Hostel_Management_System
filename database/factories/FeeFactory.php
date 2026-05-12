@@ -2,26 +2,38 @@
 
 namespace Database\Factories;
 
-use App\Models\Fee;
+use App\Models\User;
+use App\Models\Room;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Fee>
- */
 class FeeFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'student_id' => null, // You can set this to a valid student ID if needed
-            'amount' => $this->faker->randomFloat(2, 100, 1000),
-            'due_date' => $this->faker->date(),
-            'status' => 'Unpaid',
+
+            'student_id' => User::where('role', 'student')->inRandomOrder()->value('id'),
+
+            'room_id' => Room::inRandomOrder()
+                ->value('id'),
+
+            'month' => fake()->monthName(),
+
+            'year' => now()->year,
+
+            'amount' => fake()->randomElement([
+                8000,
+                10000,
+                15000
+            ]),
+
+            'status' => fake()->randomElement([
+                'Paid',
+                'Unpaid'
+            ]),
+
+            'paid_at' => fake()->optional()
+                ->dateTimeThisYear(),
         ];
     }
 }

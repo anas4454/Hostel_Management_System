@@ -2,28 +2,23 @@
 
 namespace Database\Factories;
 
-use App\Models\Visitor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Visitor>
- */
 class VisitorFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'student_id' => $this->faker->numberBetween(1, 10), // You can set this to a valid student ID if needed
-            'name' => $this->faker->name(),
-            'relation' => $this->faker->randomElement(['Parent', 'Friend', 'Relative', 'Other']),
-            'date' => $this->faker->date(),
-            'time_in' => $this->faker->time(),
-            'time_out' => $this->faker->optional()->time(),
+
+            'student_id' => User::factory()->create(['role' => 'Student'])->id,
+            'warden_id' => User::factory()->create(['role' => 'Warden'])->id,
+            'visitor_name' => $this->faker->name(),
+            'relation' => $this->faker->randomElement(['Parent', 'Sibling', 'Friend', 'Other']),
+            'phone' => $this->faker->phoneNumber(),
+            'visit_date' => $this->faker->date(),
         ];
     }
 }
+
+
