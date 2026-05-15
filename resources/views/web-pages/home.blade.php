@@ -1,5 +1,196 @@
 <x-web-component.main>
-  <div>
+
+    <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    </head>
+    <style>
+        .ai-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #ff9800, #ff6f00);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 99999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .chat-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            display: none;
+            z-index: 9998;
+        }
+
+        .ai-chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 380px;
+            height: 700px;
+            background: #f5f5f5;
+            border-radius: 30px;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            z-index: 99999;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(180deg, #f39c12, #b85c00);
+            padding: 25px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .bot-avatar {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: black;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 28px;
+        }
+
+        .ai-chat-header h5 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .ai-chat-header small {
+            font-size: 14px;
+        }
+
+        .close-chat {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 18px;
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .welcome-text {
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            color: #222;
+        }
+
+        .start-conversation {
+            background: white;
+            border-radius: 30px;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .start-conversation h4 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .start-conversation p {
+            margin: 0;
+            color: #666;
+        }
+
+        .start-icon {
+            width: 60px;
+            height: 60px;
+            background: #f39c12;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-msg {
+            background: #f39c12;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 15px;
+            align-self: flex-end;
+            margin-bottom: 12px;
+            max-width: 80%;
+        }
+
+        .bot-msg {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            max-width: 80%;
+        }
+
+        .ai-chat-footer {
+            background: white;
+            padding: 15px;
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .ai-chat-footer input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 12px;
+            border-radius: 10px;
+            background: #f2f2f2;
+        }
+
+        .ai-chat-footer button {
+            margin-left: 10px;
+            border: none;
+            background: #f39c12;
+            color: white;
+            padding: 0 20px;
+            border-radius: 10px;
+        }
+
+        @media(max-width:500px) {
+
+            .ai-chat-container {
+                width: 95%;
+                right: 2.5%;
+                height: 90vh;
+                bottom: 10px;
+            }
+
+        }
+    </style>
+    <div>
         <section class="hero">
             <div class="container">
                 <div class="row align-items-center">
@@ -242,7 +433,7 @@
                                     <span class="date">12 May</span>
                                     <h6>How to Choose the Right Hostel</h6>
                                     <p>A complete guide to help you choose the best hostel for your stay.</p>
-                                    <a href="{{ route("work") }}">Read More →</a>
+                                    <a href="{{ route('work') }}">Read More →</a>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +445,7 @@
                                     <span class="date">08 May</span>
                                     <h6>Top 10 Student-Friendly Cities in Pakistan</h6>
                                     <p>Discover the best cities for students to live and study.</p>
-                                    <a href="{{ route("work") }}">Read More →</a>
+                                    <a href="{{ route('work') }}">Read More →</a>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +457,7 @@
                                     <span class="date">03 May</span>
                                     <h6>Hostel Life: Making the Most of It</h6>
                                     <p>Tips and tricks to enjoy your hostel life and make lifelong memories.</p>
-                                    <a href="{{ route("work") }}">Read More →</a>
+                                    <a href="{{ route('work') }}">Read More →</a>
                                 </div>
                             </div>
                         </div>
@@ -279,4 +470,256 @@
 
     </div>
 
+
+    <!-- AI Chatbot Button -->
+
+    <div class="ai-chat-btn" id="openChatbot">
+        💬
+    </div>
+
+    <!-- Overlay -->
+    <div class="chat-overlay" id="chatOverlay"></div>
+
+    <!-- Chatbot -->
+    <div class="ai-chat-container" id="aiChatContainer">
+
+        <!-- Header -->
+        <div class="ai-chat-header">
+
+            <div class="d-flex align-items-center">
+
+                <div class="bot-avatar">
+                    🤖
+                </div>
+
+                <div>
+                    <h5>Hostel AI Assistant</h5>
+
+                </div>
+
+            </div>
+
+            <button class="close-chat" id="closeChatbot">
+                ✖
+            </button>
+
+        </div>
+
+        <!-- Body -->
+        <div class="ai-chat-body">
+
+            <div class="welcome-text">
+                Hello 👋 <br>
+                Welcome to Hostel AI Assistant. <br>
+                How can I help you today?
+            </div>
+
+            <!-- Start Conversation -->
+            <div class="start-conversation" id="startConversation">
+
+                <div>
+                    <h4>Start Conversation</h4>
+                    <p>Send us a message</p>
+                </div>
+
+                <div class="start-icon">
+                    ➜
+                </div>
+
+            </div>
+
+            <!-- Messages -->
+            <div class="chat-messages" id="chatMessages"></div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="ai-chat-footer">
+
+            <input type="text" id="chatInput" placeholder="Type your message...">
+
+            <button id="sendBtn">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+        const openChatbot = document.getElementById('openChatbot');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const aiChatContainer = document.getElementById('aiChatContainer');
+        const chatOverlay = document.getElementById('chatOverlay');
+
+        const sendBtn = document.getElementById('sendBtn');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        openChatbot.addEventListener('click', () => {
+
+            aiChatContainer.style.display = 'flex';
+            chatOverlay.style.display = 'block';
+
+        });
+
+        closeChatbot.addEventListener('click', closeChat);
+
+        chatOverlay.addEventListener('click', closeChat);
+
+        function closeChat() {
+
+            aiChatContainer.style.display = 'none';
+            chatOverlay.style.display = 'none';
+
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+
+        chatInput.addEventListener('keypress', function(e) {
+
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+
+        });
+
+        async function sendMessage() {
+
+            let message = chatInput.value;
+
+            if (message.trim() === '') return;
+
+            /**
+             * USER MESSAGE
+             */
+            let userDiv =
+                document.createElement('div');
+
+            userDiv.classList.add(
+                'user-msg'
+            );
+
+            userDiv.innerText = message;
+
+            chatMessages.appendChild(
+                userDiv
+            );
+
+            /**
+             * CLEAR INPUT
+             */
+            chatInput.value = '';
+
+            /**
+             * AUTO SCROLL
+             */
+            chatMessages.scrollTop =
+                chatMessages.scrollHeight;
+
+            /**
+             * LOADING MESSAGE
+             */
+            let loadingDiv =
+                document.createElement('div');
+
+            loadingDiv.classList.add(
+                'bot-msg'
+            );
+
+            loadingDiv.innerText =
+                'Typing...';
+
+            chatMessages.appendChild(
+                loadingDiv
+            );
+
+            try {
+
+                /**
+                 * SEND TO LARAVEL
+                 */
+                let response = await fetch(
+
+                    '/ask-ai',
+
+                    {
+                        method: 'POST',
+
+                        headers: {
+
+                            'Content-Type': 'application/json',
+
+                            'X-CSRF-TOKEN': document.querySelector(
+                                'meta[name="csrf-token"]'
+                            ).content,
+                        },
+
+                        body: JSON.stringify({
+
+                            message: message
+                        }),
+                    }
+                );
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        'HTTP error ' +
+                        response.status
+                    );
+                }
+
+                let data =
+                    await response.json();
+
+                /**
+                 * REMOVE LOADING
+                 */
+                loadingDiv.remove();
+
+                /**
+                 * BOT REPLY
+                 */
+                let botDiv =
+                    document.createElement('div');
+
+                botDiv.classList.add(
+                    'bot-msg'
+                );
+
+                botDiv.innerText =
+                    data.reply;
+
+                chatMessages.appendChild(
+                    botDiv
+                );
+
+                /**
+                 * AUTO SCROLL
+                 */
+                chatMessages.scrollTop =
+                    chatMessages.scrollHeight;
+
+            } catch (error) {
+
+                loadingDiv.remove();
+
+                let errorDiv =
+                    document.createElement('div');
+
+                errorDiv.classList.add(
+                    'bot-msg'
+                );
+
+                errorDiv.innerText =
+                    'Server Error';
+                console.log(error);
+
+                chatMessages.appendChild(
+                    errorDiv
+                );
+            }
+        }
+    </script>
 </x-web-component.main>

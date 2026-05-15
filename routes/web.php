@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AIController;
 use App\Http\Controllers\GardianController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeController;
@@ -11,6 +12,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ParentMiddleware;
 use App\Http\Middleware\StudentMiddleware;
 use App\Http\Middleware\WardenMiddleware;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 // ?________________________________________________________________________________
@@ -77,8 +79,8 @@ Route::prefix('warden')->middleware(['auth', 'verified',  WardenMiddleware::clas
     Route::get('/fee-payment', [WardenController::class, 'feePayment'])->name('warden.fee-payment');
 
     Route::get('/complaints', [WardenController::class, 'complaints'])->name('warden.complaints');
-    Route::put('/warden/approve-complaint/{complaint}',[WardenController::class, 'approveComplaint'])->name('warden.approve-complaint');
-    Route::put('/warden/reject-complaint/{complaint}',[WardenController::class, 'rejectComplaint'])->name('warden.reject-complaint');
+    Route::put('/warden/approve-complaint/{complaint}', [WardenController::class, 'approveComplaint'])->name('warden.approve-complaint');
+    Route::put('/warden/reject-complaint/{complaint}', [WardenController::class, 'rejectComplaint'])->name('warden.reject-complaint');
 
     Route::get('/leave-approval', [WardenController::class, 'leave'])->name('warden.leave-approval');
     Route::put('/warden/approve-leave/{leave}', [WardenController::class, 'approveLeave'])->name('warden.approve-leave');
@@ -107,10 +109,10 @@ Route::get('/stripe', [StripeController::class, 'index'])->name('stripe');
 Route::post('/stripe/checkout/{fee}', [StripeController::class, 'checkout'])->name('stripe.checkout');
 Route::get('/stripe/success/{fee}', [StripeController::class, 'success'])->name('stripe.success');
 
+Route::put('/warden/approve-room/{approval}', [WardenController::class, 'approveRoom'])->name('warden.approve-room');
 
+Route::post('/ask-ai', [AIController::class, 'askAI'])->name('ask.ai');
 
-
-Route::put('/warden/approve-room/{approval}',[WardenController::class, 'approveRoom'])->name('warden.approve-room');
 
 
 // ?________________________________________________________________________________

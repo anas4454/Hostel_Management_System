@@ -823,7 +823,7 @@
                 font-family: 'Inter', sans-serif;
             }
 
-            .facilities-container{
+            .facilities-container {
                 background-color: #efe9e1;
             }
 
@@ -1086,9 +1086,37 @@
                 }
             }
 
-            .work-hero{
+            .work-hero {
                 background: #efe9e1;
             }
+
+            .ai-chat-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 65px;
+                height: 65px;
+                background: linear-gradient(135deg, #ff9800, #ff6f00);
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 28px;
+                cursor: pointer;
+                z-index: 99999;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            }
+
+            .chat-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.35);
+                display: none;
+                z-index: 9998;
+            }
+
+
         }
     </style>
 </head>
